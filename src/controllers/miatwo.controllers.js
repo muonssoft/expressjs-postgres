@@ -28,18 +28,18 @@ export const getTask = async (req, res) => {
 
 export const createTask = async (req, res) => {
   try {
-    const { serial, date, t ,h,z} = req.body;
+    const { serial, T, H, Z, date } = req.body;
     const [result] = await pool.query(
-      "INSERT INTO miatwo(serial, date,t,h,z) VALUES (?,?,?,?,?)",
-      [serial,date, t ,h,z]
+      "INSERT INTO miatwo(serial,T,H,Z,date) VALUES (?,?,?,?,?)",
+      [serial, T, H, Z, date]
     );
     res.json({
       id: result.insertId,
       serial,
-      date,
-      t,
-      h,
-      z
+      T,
+      H,
+      Z,
+      date
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
