@@ -1,22 +1,22 @@
 import { Router } from "express";
 import {
-    getTasks,
-    getTask,
-    createTask,
-    deleteTask,
-    updateTask,
+  get,
+    post,
+    update,
+    deleteId,
+    getId,
   } from "../controllers/distance.controllers.js";
 
   const router = Router();
 
-router.get("/distance", getTasks);
+router.get("/distance", get);
 
-router.get("/distance/:id", getTask);
+router.get("/distance/:id", getId);
 
-router.post("/distance", createTask);
+router.post("/distance", post);
 
-router.put("/distance/:id", updateTask);
+router.put("/distance/:id", update);
 
-router.delete("/distance/:id", deleteTask);
+router.delete("/distance/:id", deleteId);
 
 export default router;

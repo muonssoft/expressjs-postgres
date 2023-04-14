@@ -1,6 +1,6 @@
 import { pool } from "../db.js";
 
-export const getTasks = async (req, res) => {
+export const get = async (req, res) => {
   try {
     const [result] = await pool.query(
       "SELECT * FROM distance ORDER BY id DESC LIMIT 200 "
@@ -11,7 +11,7 @@ export const getTasks = async (req, res) => {
   }
 };
 
-export const getTask = async (req, res) => {
+export const getId = async (req, res) => {
   try {
     const [result] = await pool.query("SELECT * FROM distance WHERE id = ?", [
       req.params.id,
@@ -26,7 +26,7 @@ export const getTask = async (req, res) => {
   }
 };
 
-export const createTask = async (req, res) => {
+export const post = async (req, res) => {
   try {
     const { title, description } = req.body;
     const [result] = await pool.query(
@@ -43,7 +43,7 @@ export const createTask = async (req, res) => {
   }
 };
 
-export const updateTask = async (req, res) => {
+export const update = async (req, res) => {
   try {
     const result = await pool.query("UPDATE distance SET ? WHERE id = ?", [
       req.body,
@@ -55,7 +55,7 @@ export const updateTask = async (req, res) => {
   }
 };
 
-export const deleteTask = async (req, res) => {
+export const deleteId = async (req, res) => {
   try {
     const [result] = await pool.query("DELETE FROM distance WHERE id = ?", [
       req.params.id,

@@ -3,7 +3,7 @@ import { pool } from "../db.js";
 export const get = async (req, res) => {
   try {
     const [result] = await pool.query(
-      "SELECT * FROM miatwo ORDER BY id DESC LIMIT 200 "
+      "SELECT * FROM miaone ORDER BY id DESC LIMIT 200 "
     );
     res.json(result);
   } catch (error) {
@@ -13,7 +13,7 @@ export const get = async (req, res) => {
 
 export const getSerial = async (req, res) => {
   try {
-    const [result] = await pool.query("SELECT * FROM miatwo WHERE serial = ? ORDER BY id DESC LIMIT 200", [
+    const [result] = await pool.query("SELECT * FROM miaone WHERE serial = ? ORDER BY id DESC LIMIT 200", [
       req.params.serial,
     ]);
 
@@ -27,7 +27,7 @@ export const getSerial = async (req, res) => {
 };
 export const getId = async (req, res) => {
   try {
-    const [result] = await pool.query("SELECT * FROM miatwo WHERE id = ?", [
+    const [result] = await pool.query("SELECT * FROM miaone WHERE id = ?", [
       req.params.id,
     ]);
 
@@ -44,7 +44,7 @@ export const post = async (req, res) => {
   try {
     const { serial, T, H, Z, date } = req.body;
     const [result] = await pool.query(
-      "INSERT INTO miatwo(serial,T,H,Z,date) VALUES (?,?,?,?,?)",
+      "INSERT INTO miaone(serial,T,H,Z,date) VALUES (?,?,?,?,?)",
       [serial, T, H, Z, date]
     );
     res.json({
@@ -62,7 +62,7 @@ export const post = async (req, res) => {
 
 export const update = async (req, res) => {
   try {
-    const result = await pool.query("UPDATE miatwo SET ? WHERE id = ?", [
+    const result = await pool.query("UPDATE miaone SET ? WHERE id = ?", [
       req.body,
       req.params.id,
     ]);
@@ -74,7 +74,7 @@ export const update = async (req, res) => {
 
 export const deleteId = async (req, res) => {
   try {
-    const [result] = await pool.query("DELETE FROM miatwo WHERE id = ?", [
+    const [result] = await pool.query("DELETE FROM miaone WHERE id = ?", [
       req.params.id,
     ]);
 

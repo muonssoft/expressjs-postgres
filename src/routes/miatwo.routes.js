@@ -1,25 +1,24 @@
 import { Router } from "express";
 import {
-    getTasks,
-    getTask,
-    createTask,
-    deleteTask,
-    updateTask,
+    get,
+    post,
+    update,
+    deleteId,
     getSerial,
   } from "../controllers/miatwo.controllers.js";
 
   const router = Router();
 
-router.get("/miatwo", getTasks);
+router.get("/miatwo", get);
 
 //router.get("/miatwo/:id", getTask);
 
 router.get("/miatwo/:serial", getSerial);
 
-router.post("/miatwo", createTask);
+router.post("/miatwo", post);
 
-router.put("/miatwo/:id", updateTask);
+router.put("/miatwo/:id", update);
 
-router.delete("/miatwo/:id", deleteTask);
+router.delete("/miatwo/:id", deleteId);
 
 export default router;
