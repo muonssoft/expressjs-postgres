@@ -11,6 +11,20 @@ export const getTasks = async (req, res) => {
   }
 };
 
+export const getSerial = async (req, res) => {
+  try {
+    const [result] = await pool.query("SELECT * FROM miatwo WHERE serial = ? ORDER BY id DESC LIMIT 200", [
+      req.params.serial,
+    ]);
+
+    if (result.length === 0)
+      return res.status(404).json({ message: "Task not found" });
+
+    res.json(result);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
 export const getTask = async (req, res) => {
   try {
     const [result] = await pool.query("SELECT * FROM miatwo WHERE id = ?", [
