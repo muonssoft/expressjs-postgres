@@ -30,7 +30,7 @@ export const createTask = async (req, res) => {
   try {
     const { serial, date, t ,h,z} = req.body;
     const [result] = await pool.query(
-      "INSERT INTO miatwo(date,t,h,z) VALUES (?,?,?,?,?)",
+      "INSERT INTO miatwo(serial, date,t,h,z) VALUES (?,?,?,?,?)",
       [serial,date, t ,h,z]
     );
     res.json({
