@@ -11,7 +11,7 @@ import {
 
 router.get("/distance", get);
 
-router.get("/distance/:id", getId);
+router.get("/distance/:id_project", getId);
 
 router.post("/distance", post);
 

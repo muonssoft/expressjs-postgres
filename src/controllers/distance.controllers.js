@@ -13,14 +13,14 @@ export const get = async (req, res) => {
 
 export const getId = async (req, res) => {
   try {
-    const [result] = await pool.query("SELECT * FROM distance WHERE id = ?", [
-      req.params.id,
+    const [result] = await pool.query("SELECT * FROM distance WHERE id_project = ?", [
+      req.params.id_project,
     ]);
 
     if (result.length === 0)
       return res.status(404).json({ message: "Task not found" });
 
-    res.json(result[0]);
+    res.json(result);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -28,10 +28,10 @@ export const getId = async (req, res) => {
 
 export const post = async (req, res) => {
   try {
-    const { title, description } = req.body;
+    const { id, name, value, meter, id_project } = req.body;
     const [result] = await pool.query(
-      "INSERT INTO distance(title, description) VALUES (?, ?)",
-      [title, description]
+      "INSERT INTO distance(id, name, value, meter, id_project) VALUES (?, ?,?, ?, ?)",
+      [id, name, value, meter, id_project]
     );
     res.json({
       id: result.insertId,
