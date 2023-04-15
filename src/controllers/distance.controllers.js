@@ -1,5 +1,6 @@
 import { pool } from "../db.js";
 
+
 export const get = async (req, res) => {
   try {
     const [result] = await pool.query(
@@ -26,7 +27,7 @@ export const getId = async (req, res) => {
   }
 };
 
-export const post = async (req, res) => {
+export const postTemp = async (req, res) => {
   try {
     const { id, name, value, meter, id_project } = req.body;
     const [result] = await pool.query(
@@ -44,6 +45,29 @@ export const post = async (req, res) => {
     return res.status(500).json({ message: error.message });
   }
 };
+
+export const post =async (req, res) =>{
+  try {
+    const data = req.body; // Array of objects in JSON format
+    await pool.query('START TRANSACTION');
+    for (let i = 0; i < data.length; i++) {
+      const item = data[i];
+      const [result] = await pool.execute(
+        'INSERT INTO distance (id, name, value, meter, id_project) VALUES (?, ?, ?, ?, ?)',
+        [item.id, item.name, item.value, item.meter, item.id_project]
+      );
+      item.id = result.insertId;
+    }
+    await pool.query('COMMIT');
+    await pool.end();
+    res.json(data);
+  } catch (error) {
+    console.error(error);
+    await connection.query('ROLLBACK');
+    await connection.end();
+    res.status(500).send('Error');
+  }
+}
 
 export const update = async (req, res) => {
   try {
