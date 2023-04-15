@@ -29,27 +29,22 @@ export const getId = async (req, res) => {
 
 export const post = async (req, res) => {
   try {
-    const { id, name, value, meter, id_project } = req.body;
-    const [result] = await pool.query(
+    const data = req.body;
+    data.map(async(item)=> await pool.query(
       "INSERT INTO distance(id, name, value, meter, id_project) VALUES (?, ?,?, ?, ?)",
-      [id, name, value, meter, id_project]
-    );
-    res.json({
-      id: result.insertId,
-      name, 
-      value, 
-      meter, 
-      id_project
-    });
+      [item.id, item.name, item.value, item.meter, item.id_project]
+    )
+    )
+    res.json(data)
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
-export const postT =async (req, res) =>{
+export const postt =async (req, res) =>{
   try {
     const data = req.body; // Array of objects in JSON format
-    await pool.query('START TRANSACTION');
+    //await pool.query('START TRANSACTION');
     for (let i = 0; i < data.length; i++) {
       const item = data[i];
       const [result] = await pool.execute(
@@ -58,14 +53,11 @@ export const postT =async (req, res) =>{
       );
       item.id = result.insertId;
     }
-    await pool.query('COMMIT');
+    //await pool.query('COMMIT');
     await pool.end();
     res.json(data);
   } catch (error) {
-    console.error(error);
-    await connection.query('ROLLBACK');
-    await connection.end();
-    res.status(500).send('Error');
+    return res.status(500).json({ message: error.message });
   }
 }
 
