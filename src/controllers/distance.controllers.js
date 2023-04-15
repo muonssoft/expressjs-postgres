@@ -27,7 +27,7 @@ export const getId = async (req, res) => {
   }
 };
 
-export const postTemp = async (req, res) => {
+export const post = async (req, res) => {
   try {
     const { id, name, value, meter, id_project } = req.body;
     const [result] = await pool.query(
@@ -46,7 +46,7 @@ export const postTemp = async (req, res) => {
   }
 };
 
-export const post =async (req, res) =>{
+export const postT =async (req, res) =>{
   try {
     const data = req.body; // Array of objects in JSON format
     await pool.query('START TRANSACTION');
