@@ -35,8 +35,10 @@ export const post = async (req, res) => {
     );
     res.json({
       id: result.insertId,
-      title,
-      description,
+      name, 
+      value, 
+      meter, 
+      id_project
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
