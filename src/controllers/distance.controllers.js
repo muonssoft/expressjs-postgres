@@ -75,8 +75,8 @@ export const update = async (req, res) => {
 
 export const deleteId = async (req, res) => {
   try {
-    const [result] = await pool.query("DELETE FROM distance WHERE id = ?", [
-      req.params.id,
+    const [result] = await pool.query("DELETE FROM distance WHERE name = ?", [
+      req.params.name,
     ]);
 
     if (result.affectedRows === 0)

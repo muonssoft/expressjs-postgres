@@ -17,6 +17,6 @@ router.post("/distance", post);
 
 router.put("/distance/:id", update);
 
-router.delete("/distance/:id", deleteId);
+router.delete("/distance/:name", deleteId);
 
 export default router;
