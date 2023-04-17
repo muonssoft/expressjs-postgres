@@ -13,7 +13,7 @@ export const get = async (req, res) => {
 
 export const getSerial = async (req, res) => {
   try {
-    const [result] = await pool.query("SELECT * FROM miaonet WHERE serial = ? ORDER BY id DESC LIMIT 1", [
+    const [result] = await pool.query("SELECT * FROM miaonet WHERE serial = ? ORDER BY id DESC LIMIT 200", [
       req.params.serial,
     ]);
 
