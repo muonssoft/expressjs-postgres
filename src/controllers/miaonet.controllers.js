@@ -3,7 +3,7 @@ import { pool } from "../db.js";
 export const get = async (req, res) => {
   try {
     const [result] = await pool.query(
-      "SELECT * FROM miaone ORDER BY id DESC LIMIT 200 "
+      "SELECT * FROM miaonet ORDER BY id DESC LIMIT 200 "
     );
     res.json(result);
   } catch (error) {
@@ -13,7 +13,7 @@ export const get = async (req, res) => {
 
 export const getSerial = async (req, res) => {
   try {
-    const [result] = await pool.query("SELECT * FROM miaone WHERE serial = ? ORDER BY id DESC LIMIT 1", [
+    const [result] = await pool.query("SELECT * FROM miaonet WHERE serial = ? ORDER BY id DESC LIMIT 1", [
       req.params.serial,
     ]);
 
@@ -27,7 +27,7 @@ export const getSerial = async (req, res) => {
 };
 export const getId = async (req, res) => {
   try {
-    const [result] = await pool.query("SELECT * FROM miaone WHERE id = ?", [
+    const [result] = await pool.query("SELECT * FROM miaonet WHERE id = ?", [
       req.params.id,
     ]);
 
@@ -43,7 +43,7 @@ export const post = async (req, res) => {
   try {
     const {serial, date, A0, A1, A2,phi0,phi1,phi2,AC0,AC1,AC2,phiC0,phiC1,phiC2} = req.body;
     const [result]= await pool.query(
-      "INSERT INTO miaone(serial, date, A0, A1, A2,phi0,phi1,phi2,AC0,AC1,AC2,phiC0,phiC1,phiC2	) VALUES (?, ?,?, ?, ?,?,?,?,?,?,?,?,?,?)",
+      "INSERT INTO miaonet(serial, date, A0, A1, A2,phi0,phi1,phi2,AC0,AC1,AC2,phiC0,phiC1,phiC2	) VALUES (?, ?,?, ?, ?,?,?,?,?,?,?,?,?,?)",
       [serial, date, A0, A1, A2,phi0,phi1,phi2,AC0,AC1,AC2,phiC0,phiC1,phiC2]
     );
     res.json(console.log(`Registered ${ result.insertId}`));
@@ -55,7 +55,7 @@ export const post = async (req, res) => {
 
 export const update = async (req, res) => {
   try {
-    const result = await pool.query("UPDATE miaone SET ? WHERE id = ?", [
+    const result = await pool.query("UPDATE miaonet SET ? WHERE id = ?", [
       req.body,
       req.params.id,
     ]);
@@ -67,7 +67,7 @@ export const update = async (req, res) => {
 
 export const deleteId = async (req, res) => {
   try {
-    const [result] = await pool.query("DELETE FROM miaone WHERE id = ?", [
+    const [result] = await pool.query("DELETE FROM miaonet WHERE id = ?", [
       req.params.id,
     ]);
 

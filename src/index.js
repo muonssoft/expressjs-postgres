@@ -8,6 +8,7 @@ import { PORT } from "./config.js";
 import distanceRoutes from "./routes/distance.routes.js"
 import miatwoRoutes from "./routes/miatwo.routes.js"
 import miaoneRoutes from "./routes/miaone.routes.js"
+import miaonetRoutes from "./routes/miaonet.routes.js"
 
 const app = express();
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(distanceRoutes);
 app.use(miatwoRoutes);
 app.use(miaoneRoutes);
+app.use(miaonetRoutes);
 
 
 app.use(express.static(join(__dirname, '../client/dist')))
