@@ -41,10 +41,10 @@ export const getId = async (req, res) => {
 };
 export const post = async (req, res) => {
   try {
-    const {serial, date, A0, A1, A2,phi0,phi1,phi2,AC0,AC1,AC2,phiC0,phiC1,phiC2} = req.body;
+    const {serial, date,temp1, temp2, 	temp3	, hum1	, hum2} = req.body;
     const [result]= await pool.query(
-      "INSERT INTO miaonet(serial, date, A0, A1, A2,phi0,phi1,phi2,AC0,AC1,AC2,phiC0,phiC1,phiC2	) VALUES (?, ?,?, ?, ?,?,?,?,?,?,?,?,?,?)",
-      [serial, date, A0, A1, A2,phi0,phi1,phi2,AC0,AC1,AC2,phiC0,phiC1,phiC2]
+      "INSERT INTO miaonet(serial, date,temp1, temp2, 	temp3	, hum1	, hum2	) VALUES (?, ?,?, ?, ?,?,?)",
+      [serial, date,temp1, temp2, 	temp3	, hum1	, hum2]
     );
     res.json(console.log(`Registered ${ result.insertId}`));
   } catch (error) {
