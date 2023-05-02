@@ -31,8 +31,8 @@ export const post = async (req, res) => {
   try {
     const data = req.body;
     data.map(async(item)=> await pool.query(
-      "INSERT INTO distance(id, name, value, meter, id_project) VALUES (?, ?,?, ?, ?)",
-      [item.id, item.name, item.value, item.meter, item.id_project]
+      "INSERT INTO distance(id, name, value, meter, calibrate, id_project) VALUES (?, ?,?, ?, ?,?)",
+      [item.id, item.name, item.value, item.meter, item.calibrate, item.id_project]
     )
     )
     res.json(data)
