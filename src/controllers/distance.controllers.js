@@ -48,8 +48,8 @@ export const postt =async (req, res) =>{
     for (let i = 0; i < data.length; i++) {
       const item = data[i];
       const [result] = await pool.execute(
-        'INSERT INTO distance (id, name, value, meter, id_project) VALUES (?, ?, ?, ?, ?)',
-        [item.id, item.name, item.value, item.meter, item.id_project]
+        'INSERT INTO distance (id, name, value, meter, calibrate, id_project) VALUES (?, ?, ?, ?, ?, ?)',
+        [item.id, item.name, item.value, item.meter, item.calibrate, item.id_project]
       );
       item.id = result.insertId;
     }
