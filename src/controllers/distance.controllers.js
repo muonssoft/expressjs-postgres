@@ -40,10 +40,11 @@ export const post = async (req, res) => {
             item.value,
             item.meter,
             item.calibrate,
+            item.id_project,
             item.max,
             item.min,
             item.delta,
-            item.id_project,
+            
           ]
         )
     );
