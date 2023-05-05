@@ -33,12 +33,13 @@ export const post = async (req, res) => {
     data.map(
       async (item) =>
         await pool.query(
-          "INSERT INTO atemp(id, name, value,  id_project) VALUES (?, ?,?, ?)",
+          "INSERT INTO atemp(id, name, value,  id_project,id_profile) VALUES (?,?,?,?,?)",
           [
             item.id,
             item.name,
             item.value,
-            item.id_project
+            item.id_project,
+            item.id_profile
           ]
         )
     );
