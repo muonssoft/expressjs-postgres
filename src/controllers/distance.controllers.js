@@ -27,6 +27,22 @@ export const getId = async (req, res) => {
   }
 };
 
+export const getProfile = async (req, res) => {
+  try {
+    const [result] = await pool.query(
+      "SELECT * FROM distance WHERE id_profile = ?",
+      [req.params.id_profile]
+    );
+
+    if (result.length === 0)
+      return res.status(404).json({ message: "Task not found" });
+
+    res.json(result);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
 export const post = async (req, res) => {
   try {
     const data = req.body;

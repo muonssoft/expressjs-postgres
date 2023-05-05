@@ -5,6 +5,7 @@ import {
     update,
     deleteId,
     getId,
+    getProfile
   } from "../controllers/distance.controllers.js";
 
   const router = Router();
@@ -12,6 +13,8 @@ import {
 router.get("/distance", get);
 
 router.get("/distance/:id_project", getId);
+
+router.get("/alarm/:id_profile", getProfile);
 
 router.post("/distance", post);
 
