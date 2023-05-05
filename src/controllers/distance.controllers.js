@@ -33,7 +33,7 @@ export const post = async (req, res) => {
     data.map(
       async (item) =>
         await pool.query(
-          "INSERT INTO distance(id, name, value, meter, calibrate, id_project,id_profile,max, min, delta) VALUES (?, ?,?, ?, ?,?,?,?,?.?)",
+          "INSERT INTO distance(id, name, value, meter, calibrate, id_project,id_profile,max, min, delta) VALUES (?, ?,?, ?, ?,?,?,?,?,?)",
           [
             item.id,
             item.name,
