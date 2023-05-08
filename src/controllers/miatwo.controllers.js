@@ -13,9 +13,10 @@ export const get = async (req, res) => {
 
 export const getSerial = async (req, res) => {
   try {
-    const [result] = await pool.query("SELECT * FROM miatwo WHERE serial = ? ORDER BY id DESC LIMIT 200", [
-      req.params.serial,
-    ]);
+    const [result] = await pool.query(
+      "SELECT * FROM miatwo WHERE serial = ? ORDER BY id DESC LIMIT 200",
+      [req.params.serial]
+    );
 
     if (result.length === 0)
       return res.status(404).json({ message: "Task not found" });
@@ -42,18 +43,21 @@ export const getId = async (req, res) => {
 
 export const post = async (req, res) => {
   try {
-    const { serial, T, H, Z, date } = req.body;
+    const { serial, date, T, H, Z, atemp, hum, P } = req.body;
     const [result] = await pool.query(
-      "INSERT INTO miatwo(serial,T,H,Z,date) VALUES (?,?,?,?,?)",
-      [serial, T, H, Z, date]
+      "INSERT INTO miatwo(serial,date,T,H,Z,atemp, hum, P) VALUES (?,?,?,?,?,?,?,?)",
+      [serial, date, T, H, Z, atemp, hum, P]
     );
     res.json({
       id: result.insertId,
       serial,
+      date,
       T,
       H,
       Z,
-      date
+      atemp,
+      hum,
+      P,
     });
   } catch (error) {
     return res.status(500).json({ message: error.message });
