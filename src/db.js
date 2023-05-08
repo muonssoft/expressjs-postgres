@@ -8,4 +8,11 @@ export const pool = createPool({
     database: 'u920415849_alpa'
 })
 
+// export const pool = createPool({
+//     host: 'localhost',
+//     port: 33060,
+//     user: 'root',
+//     password: 'secret',
+//     database: 'sys'
+// })
 
