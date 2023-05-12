@@ -5,6 +5,7 @@ import {
     update,
     deleteId,
     getSerial,
+    getDelta,
   } from "../controllers/miaonet.controllers.js";
 
   const router = Router();
@@ -12,6 +13,7 @@ import {
 router.get("/miaonet", get);
 
 //router.get("/miaone/:id", getTask);
+router.get("/miaoned", getDelta);
 
 router.get("/miaonet/:serial", getSerial);
 
