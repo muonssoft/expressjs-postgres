@@ -11,6 +11,16 @@ export const get = async (req, res) => {
   }
 };
 
+export const getDelta = async (req, res) => {
+  try {
+    const [result] = await pool.query(
+      "SELECT * FROM miatwo ORDER BY id DESC LIMIT 12 "
+    );
+    res.json(result);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
 export const getSerial = async (req, res) => {
   try {
     const [result] = await pool.query(

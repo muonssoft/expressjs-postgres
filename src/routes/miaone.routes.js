@@ -5,14 +5,14 @@ import {
     update,
     deleteId,
     getSerial,
-    getDelta,
+    
   } from "../controllers/miaone.controllers.js";
 
   const router = Router();
 
 router.get("/miaone", get);
 
-router.get("/miaoned", getDelta);
+
 
 //router.get("/miaone/:id", getTask);
 

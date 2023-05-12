@@ -5,11 +5,13 @@ import {
     update,
     deleteId,
     getSerial,
+    getDelta,
   } from "../controllers/miatwo.controllers.js";
 
   const router = Router();
 
 router.get("/miatwo", get);
+router.get("/miatwod", getDelta);
 
 //router.get("/miatwo/:id", getTask);
 
